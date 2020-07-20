@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Mars Rovers Images</string>
+    <string name="hint_mars_rover">Mars Rover:</string>
+    <string name="hint_mars_sun">Sun</string>
+
+    <string name="lbl_cam">Cam:</string>
+    <string name="lbl_rover">Rover:</string>
+    <string name="lbl_launch_date">Launch Date:</string>
+    <string name="lbl_landing_date">Landing Date:</string>
+    <string name="lbl_Sun">Sun</string>
+    <string name="lbl_count_sun">Sun</string>
+
+    <string name="title_main">Martian Images</string>
+
+    <string name="btn_search">Search</string>
+
+    <string name="desc_image">Martian Picture</string>
+
+    <string name="lbl_curiosity">Curiosity</string>
+    <string name="lbl_opportunity">Opportunity</string>
+    <string name="lbl_spirit">Spirit</string>
+    <string name="lbl_websites">Nasa Websites</string>
+
+    <string name="text_open_web">Select an option to see more official Mars images from NASA</string>
+
+
+    <string-array name="rovers">
+        <item>Curiosity</item>
+        <item>Opportunity</item>
+        <item>Spirit</item>
+    </string-array>
+</resources>

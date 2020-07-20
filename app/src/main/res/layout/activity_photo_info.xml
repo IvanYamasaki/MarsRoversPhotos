@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgPhoto"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/desc_image"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorBlurDark"
+        android:backgroundTint="@color/colorBlurDark"
+        android:backgroundTintMode="multiply"
+        android:paddingHorizontal="7dp"
+        android:paddingVertical="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/abc_vector_test" />
+
+    <LinearLayout
+        android:id="@+id/layoutInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/my_button_bg"
+        android:backgroundTint="@color/cardview_light_background"
+        android:backgroundTintMode="multiply"
+        android:foregroundTint="@color/design_default_color_on_secondary"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="9px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/lblCam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTint="@color/design_default_color_on_secondary"
+            android:fontFamily="@font/aldrich"
+            android:foregroundTint="@color/design_default_color_on_secondary"
+            android:foregroundTintMode="src_atop"
+            android:text="@string/lbl_cam"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/lblRover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aldrich"
+            android:foregroundTint="@color/design_default_color_on_secondary"
+            android:text="@string/lbl_rover"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/lblLandDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aldrich"
+            android:text="@string/lbl_landing_date"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/lblLaunchDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aldrich"
+            android:text="@string/lbl_launch_date"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

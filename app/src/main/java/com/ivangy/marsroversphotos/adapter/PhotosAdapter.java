@@ -22,7 +22,6 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
 
     private Context mContext;
     private ArrayList<Photo> list;
-
     public PhotosAdapter(ArrayList<Photo> list) {
         this.list = list;
     }
@@ -36,7 +35,13 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Glide.with(mContext).load(Uri.parse(list.get(position).getImage())).into(holder.imgPhoto);
+        Photo photo = list.get(position);
+        Glide.with(mContext).load(Uri.parse(photo.getImage())).into(holder.imgPhoto);
+        holder.imgPhoto.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, PhotoInfoActivity.class);
+            intent.putExtra("photo", photo);
+            mContext.startActivity(intent);
+        });
     }
 
     @Override
@@ -45,17 +50,11 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgPhoto;
+        private ImageView imgPhoto;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imgPhoto = itemView.findViewById(R.id.imgPhoto);
-
-            imgPhoto.setOnClickListener(v -> {
-                Intent intent = new Intent(mContext, PhotoInfoActivity.class);
-                intent.putExtra("position", getAdapterPosition());
-                mContext.startActivity(intent);
-            });
         }
     }
 }

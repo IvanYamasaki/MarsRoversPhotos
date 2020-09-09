@@ -34,24 +34,22 @@ public class MyImagesActivity extends AppCompatActivity {
     }
 
     private ArrayList<Photo> getImages(File file) throws IOException {
-        FileInputStream fis = null;
+        ArrayList<Photo> list = new ArrayList<>();
         try {
-            fis = new FileInputStream(file);
+            FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             Photo photo;
-            ArrayList<Photo> list = new ArrayList<>();
 
             while ((photo = (Photo) ois.readObject()) != null) {
-                Log.d("AAA", new ArrayList<>().size() + "");
+                Log.d("AAA", "1");
                 list.add(photo);
             }
-            return list;
+            ois.close();
+            fis.close();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            if (fis != null)
-                fis.close();
+            Log.d("AAAAA ruim", "2");
         }
-        return null;
+        return list;
     }
 }

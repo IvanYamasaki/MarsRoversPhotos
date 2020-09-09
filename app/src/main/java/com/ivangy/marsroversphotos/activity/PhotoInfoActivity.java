@@ -51,7 +51,7 @@ public class PhotoInfoActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
-        photo = MainActivity.listPhotos.get(bundle.getInt("position"));
+        photo = (Photo) bundle.getSerializable("photo");
 
         Glide.with(getApplicationContext()).load(Uri.parse(photo.getImage())).into(imgPhoto);
         lblRover.append(" " + photo.getQueryRover() + " (" + photo.getRoverStatus() + ")");

@@ -41,9 +41,8 @@ public class NetworkUtils {
                 builder.append(line);
                 builder.append("\n");
             }
-            if (builder.length() == 0) {
+            if (builder.length() == 0)
                 return null;
-            }
             JSONString = builder.toString();
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,13 +50,12 @@ public class NetworkUtils {
             if (urlConnection != null) {
                 urlConnection.disconnect();
             }
-            if (reader != null) {
+            if (reader != null)
                 try {
                     reader.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
         }
         return JSONString;
     }

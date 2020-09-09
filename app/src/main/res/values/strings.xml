@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">Mars Rovers Images</string>
+    <string name="app_name">Mars Images</string>
+
     <string name="hint_mars_rover">Mars Rover:</string>
     <string name="hint_mars_sun">Sun</string>
 
+    <string name="earth_date">Earth Date:</string>
     <string name="lbl_cam">Cam:</string>
     <string name="lbl_rover">Rover:</string>
     <string name="lbl_launch_date">Launch Date:</string>
@@ -22,11 +24,26 @@
     <string name="lbl_websites">Nasa Websites</string>
 
     <string name="text_open_web">Select an option to see more official Mars images from NASA</string>
+    <string name="description_nasa_logo">Nasa Logo</string>
+    <string name="start_value_sun">0</string>
 
+    <string name="no_address_found">Endereço não disponível</string>
+    <string name="service_not_available">Serviço Indisponível</string>
+    <string name="invalid_lat_long_used">Coordenadas Inválidas</string>
+    <string name="google_map_key">AIzaSyBij5Qv7i24N7loQIP-I24l2jvTLNQJt0c</string>
 
+    <string name="default_place_search">Astronomical Observatory</string>
+    <string name="default_place_radius">50000</string>
+
+    <string name="map_marker_you_are_here">YOU ARE HERE</string>
+    <string name="default_sun">0</string>
+    <string name="download_image_button">Download image button</string>
+    <string name="favorite_image_button">Favorite image button</string>
     <string-array name="rovers">
         <item>Curiosity</item>
         <item>Opportunity</item>
         <item>Spirit</item>
     </string-array>
+
+    <string name="file_favorite_images">file_favorite_images</string>
 </resources>

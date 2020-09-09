@@ -4,17 +4,28 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/mars_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.NasaWebsiteActivity"></activity>
-        <activity android:name=".activity.PhotoInfoActivity" />
-        <activity android:name=".activity.RecyclerPhotosActivity" />
+        <activity android:name=".activity.MyImagesActivity"></activity>
+        <activity android:name=".activity.GeolocationActivity" />
+        <activity
+            android:name=".activity.NasaWebsiteActivity"
+            android:allowTaskReparenting="true"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.PhotoInfoActivity"
+            android:allowTaskReparenting="true"
+            android:parentActivityName=".activity.RecyclerPhotosActivity" />
+        <activity
+            android:name=".activity.RecyclerPhotosActivity"
+            android:allowTaskReparenting="true"
+            android:parentActivityName=".activity.MainActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +37,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDDgaxvkHV3AC7gKZsxS_qrJWJJjvRlDZQ" />
     </application>
 
 </manifest>

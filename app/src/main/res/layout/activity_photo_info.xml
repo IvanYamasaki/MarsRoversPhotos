@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,14 +9,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/desc_image"
+        android:onClick="toggleAnimations"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/btnBack"
@@ -48,24 +46,37 @@
         android:backgroundTintMode="multiply"
         android:foregroundTint="@color/design_default_color_on_secondary"
         android:gravity="center_vertical"
+        android:onClick="toggleAnimations"
         android:orientation="vertical"
-        android:padding="9px"
+        android:padding="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
+            android:id="@+id/lblEarthDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aldrich"
+            android:foregroundTint="@color/design_default_color_on_secondary"
+            android:foregroundTintMode="src_atop"
+            android:text="@string/earth_date"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp"
+            app:drawableTint="@color/design_default_color_on_secondary" />
+
+        <TextView
             android:id="@+id/lblCam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTint="@color/design_default_color_on_secondary"
             android:fontFamily="@font/aldrich"
             android:foregroundTint="@color/design_default_color_on_secondary"
             android:foregroundTintMode="src_atop"
             android:text="@string/lbl_cam"
             android:textColor="@color/design_default_color_on_secondary"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:drawableTint="@color/design_default_color_on_secondary" />
 
         <TextView
             android:id="@+id/lblRover"
@@ -95,5 +106,26 @@
             android:textColor="@color/design_default_color_on_secondary"
             android:textSize="18sp" />
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnDownload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/download_image_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_downward_24" />
+
+    <ImageButton
+        android:id="@+id/btnFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/favorite_image_button"
+        app:layout_constraintBottom_toBottomOf="@+id/btnDownload"
+        app:layout_constraintEnd_toStartOf="@+id/btnDownload"
+        app:layout_constraintTop_toTopOf="@+id/btnDownload"
+        app:srcCompat="@drawable/ic_baseline_star_border_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

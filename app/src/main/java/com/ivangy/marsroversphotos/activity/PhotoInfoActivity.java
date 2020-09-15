@@ -1,8 +1,13 @@
 package com.ivangy.marsroversphotos.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.DownloadManager;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -11,15 +16,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 import com.ivangy.marsroversphotos.R;
 import com.ivangy.marsroversphotos.model.Photo;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,6 +57,7 @@ public class PhotoInfoActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
         photo = (Photo) bundle.getSerializable("photo");
+        toggleStar();
 
         Glide.with(getApplicationContext()).load(Uri.parse(photo.getImage())).into(imgPhoto);
         lblRover.append(" " + photo.getQueryRover() + " (" + photo.getRoverStatus() + ")");
@@ -69,14 +75,84 @@ public class PhotoInfoActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> onBackPressed());
 
-        btnFavorite.setOnClickListener(v -> saveImage(photo));
-
-        btnDownload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
+        btnFavorite.setOnClickListener(v -> {
+            if (MainActivity.favoritedPhotos.isFavorited(photo.getId()))
+                MainActivity.favoritedPhotos.removeImage(this, photo.getId());
+            else
+                MainActivity.favoritedPhotos.addImage(this, photo);
+            toggleStar();
         });
+        btnDownload.setOnClickListener(v -> {
+/*            toast(getApplicationContext(), "Image asdadas");
+            try {
+                File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                File file = new File(dir, photo.getImage());
+                FileOutputStream fos = new FileOutputStream(file);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(file);
+                toast(getApplicationContext(), "Image Downloaded");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }*/
+            createDir(photo.getImage());
+        });
+    }
+
+    public void createDir(String img) {
+        if (writeExternalGranted()) {
+            final String fileName = "MarsImages";
+            File direct =
+                    new File(Environment
+                            .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                            .getAbsolutePath() + "/" + fileName + "/");
+
+            if (!direct.exists())
+                direct.mkdir();
+
+            DownloadManager dm = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+            Uri downloadUri = Uri.parse(img);
+            DownloadManager.Request request = new DownloadManager.Request(downloadUri);
+            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE)
+                    .setAllowedOverRoaming(false)
+                    .setTitle(fileName)
+                    .setMimeType("image/jpeg")
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                    .setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES, File.separator + fileName + File.separator + fileName);
+
+            assert dm != null;
+            dm.enqueue(request);
+            toast(this, "Downloading...");
+        }
+    }
+
+    public boolean writeExternalGranted() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_GRANTED)
+            return true;
+        else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            toast(this, "permission");
+            return false;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                btnDownload.performClick();
+            }
+        }
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void toggleStar() {
+        if (MainActivity.favoritedPhotos.isFavorited(photo.getId()))
+            btnFavorite.setImageDrawable(getDrawable(R.drawable.ic_baseline_star_24));
+        else
+            btnFavorite.setImageDrawable(getDrawable(R.drawable.ic_baseline_star_border_24));
     }
 
     public void toggleAnimations(View v) {
@@ -99,23 +175,4 @@ public class PhotoInfoActivity extends AppCompatActivity {
         });
     }
 
-    public void saveImage(Photo photo) {
-        try {
-            /*
-                File file = new File(this.getFilesDir(), FILENAME);
-                FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-                fos.write("asd".getBytes());
-                fos.close();
-            */
-            String FileName = getApplicationContext().getResources().getString(R.string.file_favorite_images);
-            FileOutputStream fos = new FileOutputStream(getFileStreamPath(FileName));
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(photo);
-            oos.close();
-            fos.close();
-            toast(getApplicationContext(), "Image Saved");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

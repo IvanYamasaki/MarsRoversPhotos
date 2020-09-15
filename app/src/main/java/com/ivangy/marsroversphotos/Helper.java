@@ -31,4 +31,5 @@ public class Helper {
         recyclerMarsPhotos.setLayoutManager(layoutManager);
         recyclerMarsPhotos.setAdapter(adapter);
     }
+
 }

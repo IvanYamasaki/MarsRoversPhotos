@@ -5,10 +5,12 @@
     android:id="@+id/MainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@drawable/curiosity_theme"
+    android:backgroundTint="@color/colorBlurDark"
+    android:backgroundTintMode="src_over"
     android:focusableInTouchMode="true"
     android:focusedByDefault="false"
     android:padding="20dp"
+    tools:background="@drawable/curiosity_theme"
     tools:context=".activity.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -123,19 +125,37 @@
             android:paddingHorizontal="20dp"
             android:paddingVertical="10dp"
             android:text="@string/btn_search"
+            android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="PrivateResource" />
 
         <Button
             android:id="@+id/btnSavedImages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorBlur"
             android:onClick="startMyImages"
-            android:text="My Images"
+            android:text="@string/lbl_my_images"
+            android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imgViewMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/desc_dark_mode_icon"
+            android:onClick="toggleViewMode"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -151,7 +171,8 @@
         android:textColor="@color/cardview_light_background"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        tools:ignore="PrivateResource" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -174,7 +195,8 @@
         android:fontFamily="sans-serif-medium"
         android:onClick="startGeolocationActivity"
         android:paddingHorizontal="8dp"
-        android:text="Search Places"
+        android:text="@string/btn_search_places"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

@@ -4,43 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".activity.GeolocationActivity">
 
     <SearchView
         android:id="@+id/searchPlaces"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginTop="16dp"
         android:elevation="8dp"
         android:iconifiedByDefault="false"
-        android:queryHint="Search Nearby Places" />
+        android:queryHint="Search Nearby Places">
 
-    <!--
-    <LinearLayout
+    </SearchView>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="16dp">
 
-        <EditText
-            android:id="@+id/txtLocal"
-            android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRadius"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:focusableInTouchMode="true"
-            android:inputType="textPersonName"
-            android:text="@string/default_place_search" />
-
-        <Button
-            android:id="@+id/btnSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/btn_search_black"
-            android:text="@string/btn_search" />
-    </LinearLayout>
-    -->
+            android:layout_marginHorizontal="32dp"
+            android:hint="@string/hint_radius"
+            android:inputType="number"
+            android:text="@string/default_place_radius" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <fragment
         android:id="@+id/google_map"
@@ -48,6 +40,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="16dp" />
-
 
 </LinearLayout>

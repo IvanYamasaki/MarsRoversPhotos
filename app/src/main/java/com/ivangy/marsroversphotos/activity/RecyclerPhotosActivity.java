@@ -32,7 +32,7 @@ public class RecyclerPhotosActivity extends AppCompatActivity {
         TextView lblSun = findViewById(R.id.lblCountSun);
         TextView lblRover = findViewById(R.id.lblRover);
 
-        lblSun.append(String.valueOf(MainActivity.sun));
+        lblSun.append(" " + MainActivity.sun);
         lblRover.setText(MainActivity.rover);
     }
 

@@ -10,7 +10,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -25,6 +26,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:tint="@color/colorText"
+                android:visibility="gone"
                 app:srcCompat="@drawable/arrow_back" />
 
             <LinearLayout
@@ -39,14 +42,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|center_horizontal"
                     android:layout_marginTop="5dp"
-                    android:background="@color/colorBlur"
                     android:backgroundTint="@color/colorBlur"
                     android:fontFamily="@font/aldrich"
                     android:foregroundTint="@android:color/black"
                     android:gravity="center|center_vertical"
                     android:paddingHorizontal="5dp"
                     android:text="@string/lbl_count_sun"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorText"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/aldrich"
                     android:text="@string/lbl_rover"
+                    android:textColor="@color/colorText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/lblCountSun"
                     app:layout_constraintStart_toStartOf="@+id/lblCountSun"
@@ -72,6 +75,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:tint="@color/colorText"
+                android:visibility="gone"
                 app:srcCompat="@drawable/arrow_forward" />
 
         </LinearLayout>

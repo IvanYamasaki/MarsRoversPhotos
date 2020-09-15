@@ -20,6 +20,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.ivangy.marsroversphotos.Helper;
 import com.ivangy.marsroversphotos.JSonParser;
 import com.ivangy.marsroversphotos.R;
@@ -43,20 +44,19 @@ public class GeolocationActivity extends AppCompatActivity {
     private FusedLocationProviderClient client;
     private double currentLat = 0, currentLong = 0;
     private GoogleMap map;
-    //maps.googleapis.com/maps/api/place/nearbysearch/json?location=-23.479603,-46.720140&radius=55000&keyword=observatorio%astronomico&key=AIzaSyBij5Qv7i24N7loQIP-I24l2jvTLNQJt0c
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_geolocation);
 
-        supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.google_map);
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
 
         client = LocationServices.getFusedLocationProviderClient(this);
         getCurrentLocation();
 
         SearchView searchPlaces = findViewById(R.id.searchPlaces);
+        TextInputEditText txtRadius = findViewById(R.id.txtRadius);
 
         searchPlaces.setQuery(getApplicationContext().getString(R.string.default_place_search), true);
 
@@ -66,7 +66,7 @@ public class GeolocationActivity extends AppCompatActivity {
                 query = query.replace(" ", "%");
                 String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
                         "?location=" + currentLat + "," + currentLong +
-                        "&radius=" + getApplicationContext().getString(R.string.default_place_radius) +
+                        "&radius=" + (txtRadius.getText().toString().isEmpty() ? getApplicationContext().getString(R.string.default_place_radius) : txtRadius.getText().toString()) +
                         "&keyword=" + query +
                         "&sensor=true" +
                         "&key=" + getResources().getString(R.string.google_map_key);
@@ -103,7 +103,6 @@ public class GeolocationActivity extends AppCompatActivity {
 
                         // Zoom map
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-
                     });
                 }
             });

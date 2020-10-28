@@ -25,6 +25,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
+import com.ivangy.marsroversphotos.DatabaseHelper;
 import com.ivangy.marsroversphotos.Helper;
 import com.ivangy.marsroversphotos.LoadPhotos;
 import com.ivangy.marsroversphotos.R;
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity
                 MainLayout.setBackgroundResource(backImages[position]);
                 rover = spinRover.getSelectedItem().toString().toLowerCase();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -218,18 +220,23 @@ public class MainActivity extends AppCompatActivity
         startActivity(new Intent(this, MyImagesActivity.class));
     }
 
+    public void startLastSearches(View v) {
+        startActivity(new Intent(this, LastSearches.class));
+    }
+
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
         Log.d("Array:", data);
         try {
             JSONObject jsonObject = new JSONObject(data);
             JSONArray photos = jsonObject.getJSONArray("photos");
-
+            DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
             for (int i = 0; i < photos.length(); i++) {
                 JSONObject items = photos.getJSONObject(i);
                 JSONObject camera = items.getJSONObject("camera");
                 JSONObject rover = items.getJSONObject("rover");
-                listPhotos.add(new Photo(items.getInt("id"),
+
+                Photo p = new Photo(items.getInt("id"),
                         camera.getString("name"),
                         camera.getString("full_name"),
                         items.getString("img_src"),
@@ -238,7 +245,9 @@ public class MainActivity extends AppCompatActivity
                         sun,
                         rover.getString("status"),
                         rover.getString("landing_date"),
-                        rover.getString("launch_date")));
+                        rover.getString("launch_date"));
+                listPhotos.add(p);
+                databaseHelper.insertPhoto(p);
             }
         } catch (Exception e) {
             e.printStackTrace();

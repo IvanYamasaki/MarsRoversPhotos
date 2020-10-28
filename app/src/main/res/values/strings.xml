@@ -50,4 +50,6 @@
     <string name="lbl_my_images">My Images</string>
     <string name="desc_dark_mode_icon">Dark Mode Icon</string>
     <string name="btn_search_places">Search Places</string>
+    <string name="btn_last_searches">Last Searches</string>
+    <string name="btn_delete_all">Delete All</string>
 </resources>
